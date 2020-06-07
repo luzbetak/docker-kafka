@@ -16,4 +16,8 @@ To add a worker to this swarm, run the following command:
     docker swarm join --token SWMTKN-1-56vj3o5t71yhjrpae78r4mst085fcugwvmvsgiinknnrj5s6i3-ezadz7y1jpczo23r3ci5s00zu 192.168.0.14:2377
 
     To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
-```    
+```   
+
+
+
+[https://success.docker.com/article/getting-started-with-kafka](https://success.docker.com/article/getting-started-with-kafka)
