@@ -1,0 +1,59 @@
+#!/bin/bash
+#-----------------------------------------------------------------------------------------------#
+case "$1" in
+
+#-----------------------------------------------------------------------------------------------#
+install)
+
+    # sudo docker pull bitnami/kafka:latest
+    docker network create -d overlay --attachable kafka-net
+    curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-kafka/master/docker-compose.yml > docker-compose.yml 
+    docker-compose up -d
+;;
+#-----------------------------------------------------------------------------------------------#
+show)
+
+	echo "-------- docker ps -a -q -----------"
+	sudo docker ps -a -q	
+	echo "-------- docker image ls -----------"
+	sudo docker image ls
+	echo "-------- docker images -q  ---------"
+	sudo docker images -q
+	echo "------------------------------------"
+;;
+#-----------------------------------------------------------------------------------------------#
+# 	Stop all containers, delete all containers, images and volumes
+#-----------------------------------------------------------------------------------------------#
+delall)
+
+    echo "1/4 Stopping all containers"
+    sudo docker stop $(docker ps -a -q)
+
+    echo "2/4 Removing all containers"
+    sudo docker rm -f $(docker ps -a -q)
+
+    echo "3/4 Removing all images"
+    sudo docker rmi -f $(docker images -q)
+
+    echo "4/4 Deleting All Volumes"
+    sudo docker system prune --volumes
+;;
+
+#--------------------------------------------------------------------------------------------#
+*)
+    echo "+------------------------------------------------------------------------------------+"
+    echo "|  ./run           -- Help                                                           |"
+    echo "+------------------------------------------------------------------------------------+"
+    echo "|  ./run show      -- docker-compose up -d                                           |"
+    echo "+------------------------------------------------------------------------------------+"
+    echo "|  ./run start     -- docker container start <50e609c7d37c>                          |"
+    echo "|  ./run stop      -- docker stop all                                                |"
+    echo "|  ./run delall    -- docker delete all containers and images                        |"
+    echo "+------------------------------------------------------------------------------------+"
+
+;;
+
+esac
+exit 0
+
+
