@@ -1,6 +1,17 @@
 Apache Kafka
 ============
 
+### Service 
+systemctl start docker
+systemctl stop docker
+systemctl restart docker
+
+
+### swarm mode
+* docker swarm init or docker swarm join
+* docker swarm leave --force
+
+
 docker network create -d overlay --attachable kafka-net
 
 
